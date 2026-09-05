@@ -66,8 +66,10 @@ h2 em{font-style:italic;font-weight:400;color:var(--teal);letter-spacing:-0.02em
 .nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .nav-burger.open span:nth-child(2){opacity:0}
 .nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-.nav-mobile{display:none;position:fixed;top:72px;left:0;right:0;background:var(--bg);border-top:1px solid var(--line);padding:24px var(--pad) 32px;flex-direction:column;gap:18px;z-index:49;transform:translateY(-10px);opacity:0;transition:.3s}
-.nav-mobile.open{display:flex;transform:translateY(0);opacity:1}
+.nav-mobile{display:none;position:fixed;inset:0;background:var(--bg);padding:88px var(--pad) 40px;flex-direction:column;gap:22px;justify-content:center;align-items:center;text-align:center;z-index:49;opacity:0;transform:translateY(12px);transition:opacity .35s cubic-bezier(0.16,1,0.3,1), transform .35s cubic-bezier(0.16,1,0.3,1)}
+.nav-mobile.open{display:flex;opacity:1;transform:none}
+.nav-mobile a{font-size:17px;letter-spacing:0.06em;font-weight:500}
+.nav-mobile .btn{margin-top:8px;min-width:220px;justify-content:center}
 
 /* BUTTONS — bordas sofisticadas amazônicas */
 .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;border:1.5px solid transparent;border-radius:10px;cursor:pointer;transition:transform 150ms cubic-bezier(0.16,1,0.3,1), background 200ms ease, border-color 200ms ease, box-shadow 200ms ease;font-family:var(--sans);will-change:transform}
