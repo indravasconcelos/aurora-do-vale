@@ -32,7 +32,7 @@ function applyData(){
   document.querySelectorAll('.js-hotel-endereco').forEach(el=> el.textContent = hotel.endereco);
   document.querySelectorAll('.js-hotel-cidade').forEach(el=> el.textContent = `${hotel.cidade} — ${hotel.cep || ''}`.trim());
   document.querySelectorAll('.js-hotel-telefone').forEach(el=> el.textContent = hotel.telefone);
-  document.querySelectorAll('.js-bambus-endereco').forEach(el=> el.textContent = `${bambus.endereco}, Porto Velho — RO`);
+  document.querySelectorAll('.js-bambus-endereco').forEach(el=> el.innerHTML = `${bambus.endereco}, <span style="white-space:nowrap">Porto Velho — RO</span>`);
   document.querySelectorAll('.js-bambus-telefone').forEach(el=> el.textContent = bambus.telefone);
 
   // whatsapp links
@@ -59,7 +59,8 @@ window.addEventListener('scroll', ()=>{
   revealOnScroll();
 });
 
-burger.addEventListener('click', ()=>{
+burger.addEventListener('click', (e)=>{
+  e.stopPropagation();
   burger.classList.toggle('open');
   navMobile.classList.toggle('open');
 });
@@ -67,7 +68,38 @@ navMobile.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=>{
   burger.classList.remove('open');
   navMobile.classList.remove('open');
 }));
+document.addEventListener('click', (e)=>{
+  if(!navMobile.classList.contains('open')) return;
+  if(burger.contains(e.target) || navMobile.contains(e.target)) return;
+  burger.classList.remove('open');
+  navMobile.classList.remove('open');
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape' && navMobile.classList.contains('open')){
+    burger.classList.remove('open');
+    navMobile.classList.remove('open');
+  }
+});
 
+// OVERDRIVE B — ticks acendem com scroll (sem agulha sobre imagem)
+(function(){
+  var hero=document.querySelector('.hero--overdrive .hero-media');
+  var ticks=document.querySelectorAll('.hero--overdrive .hero-tick');
+  if(!hero||!ticks.length) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function onScroll(){
+    var r=hero.getBoundingClientRect();
+    var vh=window.innerHeight;
+    var p=1 - Math.max(0, Math.min(1, (r.top + r.height) / (vh + r.height)));
+    ticks.forEach(function(t,i){
+      var thr=(i+1)/ticks.length;
+      t.classList.toggle('is-lit', p >= thr - 0.08);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
 // scroll suave com easing e offset do menu fixo
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
@@ -134,8 +166,15 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     cards.forEach(c=> c.classList.toggle('is-active', c===best));
   }
   let ticking=false;
-  viewport.addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(()=>{ setActiveByCenter(); ticking=false; }); ticking=true; } }, {passive:true});
-  window.addEventListener('resize', setActiveByCenter);
+  const prog=document.getElementById('galeriaProgress');
+  function updProg(){
+    if(!prog) return;
+    const max=viewport.scrollWidth - viewport.clientWidth;
+    const p=max>0? viewport.scrollLeft / max : 0;
+    prog.style.transform='translateX('+(p*200)+'%)';
+  }
+  viewport.addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(()=>{ setActiveByCenter(); updProg(); ticking=false; }); ticking=true; } }, {passive:true});
+  window.addEventListener('resize', ()=>{ setActiveByCenter(); updProg(); });
   // auto contínuo
   let idx=1; // começa com segundo centralizado
   function centerTo(i){
@@ -193,38 +232,67 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   document.documentElement.style.setProperty('--motion','none');
 }
 
-// DEPOIMENTOS — carrossel auto-scroll (desktop + mobile) centralizado
+// DEPOIMENTOS — carrossel auto-scroll centralizado com dots + reduced-motion
 (function(){
   var wrap=document.getElementById('avaliacoesParallax');
   if(!wrap) return;
   var cards=wrap.querySelectorAll('.av-placeholder-card');
   if(!cards.length) return;
+  // injeta ticks do painel em cada card (evita 8 edições manuais)
+  cards.forEach(function(c){
+    if(c.querySelector('.instrument-tick')) return;
+    ['t','r','b','l'].forEach(function(p){
+      var s=document.createElement('span');
+      s.className='instrument-tick instrument-tick--'+p;
+      s.setAttribute('aria-hidden','true');
+      c.appendChild(s);
+    });
+  });
+  var dots=document.getElementById('avDots');
   var idx=0;
   var auto=null;
+  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function updateDots(){
+    if(!dots) return;
+    Array.from(dots.children).forEach(function(b,i){ b.classList.toggle('is-active', i===idx); b.setAttribute('aria-selected', i===idx); });
+  }
   function centerTo(i){
-    var card=cards[i % cards.length];
+    idx=(i+cards.length)%cards.length;
+    var card=cards[idx];
     if(!card) return;
     var left=card.offsetLeft - (wrap.clientWidth - card.offsetWidth)/2;
     wrap.scrollTo({left:left,behavior:'smooth'});
+    updateDots();
   }
   function next(){
-    idx=(idx+1)%cards.length;
-    centerTo(idx);
+    centerTo(idx+1);
   }
   function startAuto(){
     stopAuto();
+    if(reduceMotion) return;
     auto=setInterval(next,2800);
   }
   function stopAuto(){
     if(auto){ clearInterval(auto); auto=null; }
   }
+  if(dots){
+    cards.forEach(function(_,i){
+      var b=document.createElement('button');
+      b.type='button'; b.setAttribute('role','tab'); b.setAttribute('aria-label','Ir para depoimento '+(i+1));
+      b.addEventListener('click', function(){ centerTo(i); stopAuto(); setTimeout(startAuto,4000); });
+      dots.appendChild(b);
+    });
+    updateDots();
+  }
   wrap.addEventListener('mouseenter',stopAuto);
   wrap.addEventListener('touchstart',stopAuto,{passive:true});
   wrap.addEventListener('touchend',function(){ setTimeout(startAuto,2000); });
   wrap.addEventListener('mouseleave',startAuto);
-  // centraliza primeiro card ao carregar
+  wrap.addEventListener('scroll', function(){
+    var c=Math.round(wrap.scrollLeft / (cards[0].offsetWidth+14));
+    if(c!==idx && c>=0 && c<cards.length){ idx=c; updateDots(); }
+  }, {passive:true});
   setTimeout(function(){ centerTo(0); }, 300);
-  // pausa quando fora da viewport (performance)
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting) startAuto(); else stopAuto();
@@ -234,6 +302,24 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
 })();
 
 
+// LOCALIZAÇÃO 3D — tilt sutil no mapa (desktop)
+(function(){
+  var card=document.querySelector('.localizacao-visual');
+  if(!card) return;
+  if(window.matchMedia('(hover: none)').matches) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var raf=0;
+  card.addEventListener('mousemove', function(e){
+    var r=card.getBoundingClientRect();
+    var rx=((e.clientY - r.top)/r.height -0.5)*-10;
+    var ry=((e.clientX - r.left)/r.width -0.5)*12;
+    if(!raf){
+      raf=1;
+      requestAnimationFrame(function(){ card.style.transform='perspective(1200px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateZ(14px)'; raf=0; });
+    }
+  }, {passive:true});
+  card.addEventListener('mouseleave', function(){ card.style.transform=''; });
+})();
 // onboard — empty-state galeria
 (function(){
   const track=document.getElementById('galeriaTrack');
@@ -248,4 +334,15 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
 applyData();
 revealOnScroll();
 
+// Delight — feedback preciso no CTA (microinteração sutil)
+document.querySelectorAll('.js-reservar.btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    var orig=b.textContent;
+    if(b.dataset.delight) return;
+    b.dataset.delight='1';
+    b.textContent='Abrindo WhatsApp ✓';
+    b.style.letterSpacing='0.06em';
+    setTimeout(function(){ b.textContent=orig; delete b.dataset.delight; b.style.letterSpacing=''; }, 1800);
+  });
+});
 // smooth anchor offset handled by CSS scroll-padding

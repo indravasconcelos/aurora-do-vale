@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-05T00:00:00.000Z",
+  "title": "Design System: Hotel Pousada Porto Feliz",
+  "extensions": {
+    "colorMeta": {
+      "terra-queimada": { "role": "primary", "displayName": "Terra Queimada", "canonical": "#6B3E26", "tonalRamp": ["#2b1810", "#3d2217", "#4e2d1a", "#6B3E26", "#8a5a3d", "#a67c52", "#c9a98a", "#e8d5c0"] },
+      "musgo": { "role": "primary", "displayName": "Musgo", "canonical": "#2E8B57", "tonalRamp": ["#0f2e1c", "#153f26", "#1f5a35", "#2E8B57", "#3CB371", "#6ec89a", "#a8ddbf", "#dff0e6"] },
+      "barro": { "role": "primary", "displayName": "Barro", "canonical": "#8B2A2A", "tonalRamp": ["#2f0f0f", "#4a1a1a", "#6f2222", "#8B2A2A", "#a64d4d", "#c07a7a", "#ddb0b0", "#f5dede"] },
+      "ivory": { "role": "neutral", "displayName": "Ivory", "canonical": "#f9f3e6", "tonalRamp": ["#e8ddd2", "#efe6d0", "#f2ead6", "#f9f3e6", "#fdfaf2", "#fefcf8", "#fffefb", "#ffffff"] },
+      "line": { "role": "neutral", "displayName": "Line Areia", "canonical": "#e8d5c0", "tonalRamp": ["#d1b89a", "#d9c3a8", "#e0ccb4", "#e8d5c0", "#efe0cf", "#f2e8d8", "#f9f0e3", "#fdfaf2"] },
+      "mid": { "role": "neutral", "displayName": "Mid", "canonical": "#7a6e5d", "tonalRamp": ["#3a332a", "#4f463a", "#635a4b", "#7a6e5d", "#9a8e7d", "#b8b0a3", "#d5d0c6", "#efe6d0"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero e headlines editoriais em Cormorant Garamond." },
+      "headline": { "displayName": "Headline", "purpose": "Títulos de seção com itálico em musgo." },
+      "body": { "displayName": "Body", "purpose": "Parágrafos longos Inter light, max 62ch." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows e metas em Space Grotesk uppercase." }
+    },
+    "shadows": [
+      { "name": "hero-media", "value": "0 18px 48px rgba(30,51,49,0.14), 0 2px 14px rgba(30,51,49,0.08)", "purpose": "Única sombra em repouso, hero." },
+      { "name": "card-hover", "value": "0 12px 32px rgba(107,62,38,0.10)", "purpose": "Hover de cards diferenciais e depoimentos." },
+      { "name": "galeria-active", "value": "0 18px 40px rgba(46,139,87,0.14)", "purpose": "Card central ativo da galeria." },
+      { "name": "nav", "value": "0 1px 18px rgba(107,62,38,0.07)", "purpose": "Separação da nav fixa." }
+    ],
+    "motion": [
+      { "name": "reveal", "value": "transform 0.8s ease, opacity 0.8s ease", "purpose": "Reveal de seções com delay 0.15–0.6s." },
+      { "name": "hover", "value": "all 0.3s ease", "purpose": "Transição padrão de botões e cards." },
+      { "name": "galeria", "value": "transform 0.88s cubic-bezier(0.2,0.8,0.2,1)", "purpose": "Scale e translateY do carrossel." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "390px" },
+      { "name": "md", "value": "640px" },
+      { "name": "lg", "value": "768px" },
+      { "name": "xl", "value": "1024px" },
+      { "name": "xxl", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA principal em musgo, usado em Reservar.",
+      "html": "<button class=\"ds-btn-primary\">Reservar hospedagem</button>",
+      "css": ".ds-btn-primary{background:#2E8B57;color:#ffffff;border:1.5px solid #2E8B57;border-radius:10px;padding:14px 26px;font-family:Inter,sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;box-shadow:0 2px 10px rgba(46,139,87,0.14);transition:all 0.3s;cursor:pointer}.ds-btn-primary:hover{background:#236b43;border-color:#236b43;box-shadow:0 4px 16px rgba(46,139,87,0.20)}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secundário transparente com borda terra.",
+      "html": "<a class=\"ds-btn-outline\">Como chegar</a>",
+      "css": ".ds-btn-outline{background:transparent;color:#6B3E26;border:1.5px solid #6B3E26;border-radius:10px;padding:14px 26px;font-family:Inter,sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;transition:all 0.3s;cursor:pointer}.ds-btn-outline:hover{background:#6B3E26;color:#ffffff}"
+    },
+    {
+      "name": "Delicate Card",
+      "kind": "card",
+      "refersTo": "card-delicate",
+      "description": "Card de diferencial com ícone circular e borda areia.",
+      "html": "<article class=\"ds-card-delicate\"><span class=\"ds-card-icon\">◉</span><h3>Localização estratégica</h3><p>Ao lado da rodoviária, com fácil acesso.</p></article>",
+      "css": ".ds-card-delicate{background:#ffffff;border:1px solid #e8d5c0;border-radius:14px;padding:22px 16px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;min-height:188px}.ds-card-delicate .ds-card-icon{width:42px;height:42px;border-radius:999px;border:1px solid #d1b89a;background:#ffffff;display:grid;place-items:center;color:#6B3E26}.ds-card-delicate h3{font-family:Space Grotesk,sans-serif;font-size:11px;letter-spacing:0.13em;text-transform:uppercase;color:#6B3E26;margin-top:6px}.ds-card-delicate p{font-size:12.5px;line-height:1.65;color:#7a6e5d;max-width:160px}"
+    },
+    {
+      "name": "Testimonial Card",
+      "kind": "card",
+      "refersTo": "card-delicate",
+      "description": "Card de depoimento com filete teal e aspas fantasma.",
+      "html": "<div class=\"ds-testimonial\"><p>O atendimento é excelente. Estacionamento exclusivo, achei válido.</p><em>— G. A</em></div>",
+      "css": ".ds-testimonial{position:relative;background:#ffffff;border:1px solid #e8d5c0;border-radius:12px;padding:20px 18px;overflow:hidden;flex:0 0 340px;max-width:340px}.ds-testimonial::before{content:'';position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,#2E8B57 0%,#a67c52 100%);opacity:0.85}.ds-testimonial p{font-size:13.5px;color:#6B3E26;margin:6px 0 14px;line-height:1.65}.ds-testimonial em{font-size:10px;color:#7a6e5d;font-family:Space Grotesk,sans-serif;letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px}.ds-testimonial em::before{content:'';width:20px;height:1px;background:#2E8B57;opacity:0.35}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-cta",
+      "description": "Nav fixa com blur e CTA musgo.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-logo\">PORTO FELIZ</span><a class=\"ds-nav-cta\">Reservar</a></nav>",
+      "css": ".ds-nav{position:fixed;top:0;left:0;right:0;height:72px;background:rgba(253,250,242,0.96);backdrop-filter:blur(12px);border-bottom:1px solid #e8d5c0;box-shadow:0 1px 18px rgba(107,62,38,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 32px}.ds-nav-logo{font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:0.14em;color:#6B3E26}.ds-nav-cta{background:#2E8B57;color:#ffffff;border:1.5px solid #2E8B57;border-radius:10px;padding:10px 18px;font-weight:700;box-shadow:0 2px 10px rgba(46,139,87,0.18)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Retiro de Passagem",
+    "overview": "Um sistema prático e confiável que transforma a pausa entre viagens em descanso. Editorialmente calmo, com tipografia serif generosa, respiro ivory e detalhes amazônicos contidos. A interface decide rápido: localização primeiro, prova depois, ação sempre à mão.",
+    "keyCharacteristics": ["Editorialmente calmo com hierarquia serif forte", "Paleta terrosa contida + musgo como único acento", "Densidade média-baixa, respiro ivory e linhas areia", "Componentes refinados e contidos", "Movimento restrito a reveal e carrosséis snap"],
+    "rules": [
+      { "name": "The Musgo-Only Action Rule", "body": "Só o musgo (#2E8B57) pode ser fundo de CTA primário.", "section": "colors" },
+      { "name": "The Serif-Only Headline Rule", "body": "Títulos h1/h2 sempre Cormorant Garamond.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Superfícies planas em repouso; sombras só no hover/ativo.", "section": "elevation" }
+    ],
+    "dos": ["Do manter CTA primário sempre em musgo com radius 10px", "Do usar white-space:nowrap em Porto Velho e Porto Velho — RO", "Do reutilizar calc(50vw - 170px) para carrosséis full-bleed", "Do preservar overflow:visible em textos", "Do aplicar prefers-reduced-motion"],
+    "donts": ["Don't usar terra ou barro como fundo de botão primário", "Don't adicionar sombra em repouso a cards", "Don't quebrar Bambus como parte do hotel", "Don't inventar depoimentos ou fotos", "Don't introduzir nova família tipográfica"]
+  }
+}
