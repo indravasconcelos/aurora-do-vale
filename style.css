@@ -261,7 +261,7 @@ h2 em{font-style:italic;font-weight:400;color:var(--teal);letter-spacing:-0.02em
 .galeria-ref-sub{font-size:14px;color:rgba(255,255,255,0.5);margin-top:10px;line-height:1.6}
 
 /* STAGE — full-bleed */
-.galeria-ref-stage{position:relative;width:100vw;margin-left:calc(-50vw + 50%);height:360px;overflow:hidden}
+.galeria-ref-stage{position:relative;width:100vw;margin-left:calc(-50vw + 50%);height:420px;overflow:hidden;padding:20px 0}
 
 /* CARDS */
 .galeria-ref-card{position:absolute;top:50%;width:34vw;max-width:460px;min-width:240px;aspect-ratio:16/10;border-radius:14px;overflow:hidden;box-shadow:0 12px 36px rgba(0,0,0,0.4);transition:transform .85s cubic-bezier(0.22,1,0.36,1), opacity .7s cubic-bezier(0.22,1,0.36,1), box-shadow .8s ease;will-change:transform,opacity;z-index:0;pointer-events:none}
@@ -691,6 +691,8 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;text-underline-
   .faq-question{font-size:14px;padding:18px 20px}
   .faq-answer p{font-size:13px;padding:0 20px 18px}
   .localizacao-visual{transform:rotateX(4deg) rotateY(-3deg) translateZ(0)}
+  .galeria-ref-stage{height:360px}
+  .galeria-ref-card{width:40vw;min-width:220px}
 }
 
 /* Mobile landscape & small tablets (640px - 767px) */
@@ -708,8 +710,10 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;text-underline-
   .residencial-card{padding:20px 18px 16px}
   .residencial-card h3{font-size:17px}
   .residencial-card-area{font-size:22px}
-  .galeria-ref-stage{height:280px}
-  .galeria-ref-card{width:70vw;min-width:200px}
+  .galeria-ref{padding:36px 0 28px}
+  .galeria-ref-stage{height:320px}
+  .galeria-ref-card{width:55vw;min-width:180px}
+  .galeria-ref-header{margin-bottom:20px}
   .faq-header{margin-bottom:28px}
   .faq-list{gap:8px}
   .faq-question{padding:16px 18px;font-size:13px}
@@ -740,8 +744,8 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;text-underline-
   .residencial-header h2{font-size:clamp(24px,6vw,32px)}
   .residencial-sub{font-size:13px}
   .galeria-ref{padding:32px 0 24px}
-  .galeria-ref-stage{height:220px}
-  .galeria-ref-card{width:75vw;min-width:180px}
+  .galeria-ref-stage{height:260px}
+  .galeria-ref-card{width:65vw;min-width:160px}
   .galeria-ref-btn{width:40px;height:40px}
   .faq-header h2{font-size:clamp(22px,6vw,30px)}
   .localizacao-visual{border-radius:12px;padding:6px}
@@ -772,8 +776,8 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;text-underline-
   .residencial-card-area{font-size:20px}
   .residencial-card-list li{font-size:11px}
   .galeria-ref{padding:24px 0 20px}
-  .galeria-ref-stage{height:180px}
-  .galeria-ref-card{width:80vw;min-width:160px}
+  .galeria-ref-stage{height:220px}
+  .galeria-ref-card{width:75vw;min-width:140px}
   .galeria-ref-btn{width:36px;height:36px}
   .faq-header{margin-bottom:20px}
   .faq-question{padding:14px 16px;font-size:12px}
@@ -801,8 +805,8 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;text-underline-
   .residencial-card{padding:14px 12px}
   .residencial-card h3{font-size:14px}
   .residencial-card-area{font-size:18px}
-  .galeria-ref-stage{height:160px}
-  .galeria-ref-card{width:85vw;min-width:140px}
+  .galeria-ref-stage{height:180px}
+  .galeria-ref-card{width:85vw;min-width:120px}
   .faq-question{font-size:11px;padding:12px 14px}
   .faq-answer p{font-size:10px;padding:0 14px 12px}
   .av-placeholder-card{max-width:240px}
