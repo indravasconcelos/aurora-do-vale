@@ -1,41 +1,53 @@
 // =====================
-// DADOS EDITÁVEIS - ALTERE AQUI
+// DADOS EDITÁVEIS — ALTERE AQUI (PROTÓTIPO FICTÍCIO)
+// Troque apenas este bloco para atualizar todo o site.
 // =====================
+const empreendimento = {
+  nome: "Residencial Aurora do Vale",
+  cidade: "Nova Esperança — RO*",
+  endereco: "Rua das Acácias, 1200 — Bairro Aurora*",
+  cep: "76800-000*",
+  whatsapp: "5569993152511",
+  googleMaps: "https://www.google.com/maps/search/?api=1&query=Rua+das+Acácias,+Nova+Esperança+RO",
+  precoBrisa: "a partir de R$ 189.900* — Modelo Essencial",
+  precoSol: "a partir de R$ 219.900* — Modelo Plus",
+  observacao: "*Valores, endereço e cidade fictícios — protótipo."
+};
+
+// Compatibilidade: hotel/bambus mantêm interface para applyData()
 const hotel = {
-  nome: "Hotel Pousada Porto Feliz",
+  nome: empreendimento.nome,
   telefone: "(69) 99315-2511",
-  whatsapp: "5569993152511", 
-  endereco: "R. Dom Pedro II, 2890 - São Cristóvão",
-  cidade: "Porto Velho - RO",
-  cep: "76804-116",
-  googleMaps: "https://www.google.com/maps/search/?api=1&query=R.+Dom+Pedro+II,+2890+-+São+Cristóvão,+Porto+Velho+-+RO"
+  whatsapp: empreendimento.whatsapp,
+  endereco: empreendimento.endereco,
+  cidade: empreendimento.cidade,
+  cep: empreendimento.cep,
+  googleMaps: empreendimento.googleMaps
 };
 
 const bambus = {
-  nome: "Bambus Gastronomia",
+  nome: "Financiamento Aurora do Vale",
   telefone: "(69) 99315-2511",
-  endereco: "R. Dom Pedro II, 2850 - São Cristóvão",
-  instagram: "", // ex: https://instagram.com/bambusgastronomia
-  whatsapp: "5569993152511",
-  maps: "https://www.google.com/maps/search/?api=1&query=R.+Dom+Pedro+II,+2850+-+São+Cristóvão,+Porto+Velho+-+RO"
+  endereco: "Rua das Acácias, 1200 — Bairro Aurora",
+  instagram: "",
+  whatsapp: empreendimento.whatsapp,
+  maps: empreendimento.googleMaps
 };
 
-// Mensagem padrão WhatsApp
-const msgHotel = encodeURIComponent(`Olá! Gostaria de reservar hospedagem no ${hotel.nome}. Poderia me informar disponibilidade e valores?`);
-const msgBambus = encodeURIComponent(`Olá! Vi o ${bambus.nome} pelo site do ${hotel.nome} e gostaria de mais informações.`);
+// Mensagem padrão WhatsApp — funil para futuro agente de IA
+const msgHotel = encodeURIComponent(`Olá! Tenho interesse no ${empreendimento.nome} em ${empreendimento.cidade}. Gostaria de saber sobre as casas de 2 e 3 quartos ${empreendimento.precoBrisa} / ${empreendimento.precoSol} e as condições de financiamento. Poderia me ajudar?`);
+const msgBambus = encodeURIComponent(`Olá! Vi o ${empreendimento.nome} e queria simular o financiamento das casas. ${empreendimento.observacao}`);
 
 // =====================
 // LINKS DINÂMICOS
 // =====================
 function applyData(){
-  // hotel textos
   document.querySelectorAll('.js-hotel-endereco').forEach(el=> el.textContent = hotel.endereco);
   document.querySelectorAll('.js-hotel-cidade').forEach(el=> el.textContent = `${hotel.cidade} — ${hotel.cep || ''}`.trim());
   document.querySelectorAll('.js-hotel-telefone').forEach(el=> el.textContent = hotel.telefone);
-  document.querySelectorAll('.js-bambus-endereco').forEach(el=> el.innerHTML = `${bambus.endereco}, <span style="white-space:nowrap">Porto Velho — RO</span>`);
+  document.querySelectorAll('.js-bambus-endereco').forEach(el=> el.innerHTML = `${bambus.endereco}, <span style="white-space:nowrap">Nova Esperança — RO*</span>`);
   document.querySelectorAll('.js-bambus-telefone').forEach(el=> el.textContent = bambus.telefone);
 
-  // whatsapp links
   const waHotel = hotel.whatsapp ? `https://wa.me/${hotel.whatsapp}?text=${msgHotel}` : `https://wa.me/?text=${msgHotel}`;
   const waBambus = bambus.whatsapp ? `https://wa.me/${bambus.whatsapp}?text=${msgBambus}` : `https://wa.me/?text=${msgBambus}`;
   document.querySelectorAll('.js-reservar').forEach(a=> { a.href = waHotel; a.target='_blank'; a.rel='noopener'; });
@@ -81,24 +93,26 @@ document.addEventListener('keydown', (e)=>{
   }
 });
 
-// OVERDRIVE B — ticks acendem com scroll (sem agulha sobre imagem)
+// HERO — parallax sutil no scroll (apenas desktop)
 (function(){
-  var hero=document.querySelector('.hero--overdrive .hero-media');
-  var ticks=document.querySelectorAll('.hero--overdrive .hero-tick');
-  if(!hero||!ticks.length) return;
+  var bg=document.querySelector('.hero-full-bg img');
+  if(!bg) return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  function onScroll(){
-    var r=hero.getBoundingClientRect();
-    var vh=window.innerHeight;
-    var p=1 - Math.max(0, Math.min(1, (r.top + r.height) / (vh + r.height)));
-    ticks.forEach(function(t,i){
-      var thr=(i+1)/ticks.length;
-      t.classList.toggle('is-lit', p >= thr - 0.08);
-    });
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  onScroll();
+  if(window.matchMedia('(hover: none)').matches) return;
+  var ticking=false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        var scroll=window.pageYOffset;
+        var h=window.innerHeight;
+        if(scroll < h*1.2){
+          bg.style.transform='scale('+(1.04 - scroll*0.00008)+') translateY('+(scroll*0.15)+'px)';
+        }
+        ticking=false;
+      });
+      ticking=true;
+    }
+  }, {passive:true});
 })();
 // scroll suave com easing e offset do menu fixo
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -126,79 +140,82 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 });
 
 // =====================
-// GALERIA — carrossel foco central (cresce e sobe) + lightbox
+// GALERIA — cards empilhados com rotação suave
 // =====================
 (function(){
-  const viewport=document.getElementById('galeriaCarousel');
-  const track=document.getElementById('galeriaTrack');
-  const cards=track? track.querySelectorAll('.galeria-card'): [];
-  if(!viewport || !track || !cards.length) return;
-  // lightbox
-  const lb=document.getElementById('galeriaLightbox');
-  const lbImg=document.getElementById('galeriaLightboxImg');
-  const lbClose=document.getElementById('galeriaClose');
-  cards.forEach(card=>{
-    card.style.cursor='zoom-in';
-    card.addEventListener('click', ()=>{
-      if(card._drag) return;
-      const img=card.querySelector('img');
-      if(!img || !lb || !lbImg) return;
-      lbImg.src=img.src; lbImg.alt=img.alt;
-      lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
+  const stage=document.getElementById('galeriaStage');
+  if(!stage) return;
+  const cards=Array.from(stage.querySelectorAll('.galeria-ref-card'));
+  const btnPrev=document.getElementById('galeriaPrev');
+  const btnNext=document.getElementById('galeriaNext');
+  if(!cards.length || !btnPrev || !btnNext) return;
+
+  const total=cards.length;
+  let order=[0,1,2,3,4,5,6,7];
+  let busy=false;
+  const posList=['center','left','right','back'];
+
+  function applyPositions(stagger){
+    cards.forEach((card,i)=>{
+      const pos=order.indexOf(i);
+      const target=pos<4 ? posList[pos] : 'hidden';
+      if(stagger){
+        const delay=pos*80;
+        card.style.transitionDelay=delay+'ms';
+        card.querySelector('img').style.transitionDelay=delay+'ms';
+      }
+      card.setAttribute('data-pos',target);
+    });
+    if(stagger){
+      setTimeout(()=>{
+        cards.forEach(card=>{
+          card.style.transitionDelay='0ms';
+          card.querySelector('img').style.transitionDelay='0ms';
+        });
+      },900);
+    }
+  }
+
+  function rotate(dir){
+    if(busy) return;
+    busy=true;
+    if(dir===1){
+      const last=order.pop();
+      order.unshift(last);
+    } else {
+      const first=order.shift();
+      order.push(first);
+    }
+    applyPositions(true);
+    setTimeout(()=>{ busy=false; },950);
+  }
+
+  btnNext.addEventListener('click',()=>rotate(1));
+  btnPrev.addEventListener('click',()=>rotate(-1));
+
+  applyPositions(false);
+})();
+
+// =====================
+// FAQ — accordion suave
+// =====================
+(function(){
+  const items=document.querySelectorAll('.faq-item');
+  if(!items.length) return;
+  items.forEach(item=>{
+    const btn=item.querySelector('.faq-question');
+    if(!btn) return;
+    btn.addEventListener('click',()=>{
+      const isOpen=item.classList.contains('open');
+      // Fecha todos
+      items.forEach(i=>{ i.classList.remove('open'); i.querySelector('.faq-question')?.setAttribute('aria-expanded','false'); });
+      // Abre o clicado (se estava fechado)
+      if(!isOpen){
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
     });
   });
-  function closeLb(){ if(!lb) return; lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-  lbClose?.addEventListener('click', closeLb);
-  lb?.addEventListener('click', e=>{ if(e.target===lb || e.target===lbImg) closeLb(); });
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
-  // foco central
-  function setActiveByCenter(){
-    const vr=viewport.getBoundingClientRect();
-    const vc=vr.left + vr.width/2;
-    let best=null, bestDist=Infinity;
-    cards.forEach(c=>{
-      const r=c.getBoundingClientRect();
-      const cc=r.left + r.width/2;
-      const d=Math.abs(cc - vc);
-      if(d < bestDist){ bestDist=d; best=c; }
-    });
-    cards.forEach(c=> c.classList.toggle('is-active', c===best));
-  }
-  let ticking=false;
-  const prog=document.getElementById('galeriaProgress');
-  function updProg(){
-    if(!prog) return;
-    const max=viewport.scrollWidth - viewport.clientWidth;
-    const p=max>0? viewport.scrollLeft / max : 0;
-    prog.style.transform='translateX('+(p*200)+'%)';
-  }
-  viewport.addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(()=>{ setActiveByCenter(); updProg(); ticking=false; }); ticking=true; } }, {passive:true});
-  window.addEventListener('resize', ()=>{ setActiveByCenter(); updProg(); });
-  // auto contínuo
-  let idx=1; // começa com segundo centralizado
-  function centerTo(i){
-    const c=cards[i % cards.length];
-    if(!c) return;
-    const left = c.offsetLeft - (viewport.clientWidth - c.offsetWidth)/2;
-    viewport.scrollTo({left, behavior:'smooth'});
-  }
-  function next(){
-    idx=(idx+1) % cards.length;
-    centerTo(idx);
-  }
-  let auto=setInterval(next, 3400);
-  viewport.addEventListener('mouseenter', ()=> clearInterval(auto));
-  viewport.addEventListener('mouseleave', ()=> auto=setInterval(next, 2600));
-  viewport.addEventListener('touchstart', ()=> clearInterval(auto), {passive:true});
-  viewport.addEventListener('touchend', ()=> setTimeout(()=> auto=setInterval(next, 3400), 2000));
-  // drag distinguido de clique
-  let downX=0;
-  viewport.addEventListener('mousedown', e=>{ downX=e.clientX; cards.forEach(c=> c._drag=false); });
-  viewport.addEventListener('mousemove', e=>{ if(Math.abs(e.clientX-downX)>6) cards.forEach(c=> c._drag=true); });
-  // init
-  setTimeout(()=>{ centerTo(1); setActiveByCenter(); }, 300);
-  viewport.addEventListener('scroll', setActiveByCenter);
 })();
 
 // =====================
@@ -209,21 +226,13 @@ function revealOnScroll(){
     const rect = el.getBoundingClientRect();
     if(rect.top < window.innerHeight - 80) el.classList.add('in');
   });
-  // flow line animation
   document.querySelectorAll('.flow-line').forEach(el=>{
     const rect = el.getBoundingClientRect();
     if(rect.top < window.innerHeight - 40) el.classList.add('active');
   });
 }
 
-
-
-
-
-
-
-
-// harden — fallback para imagens e prefers-reduced-motion
+// harden
 document.querySelectorAll('img').forEach(img=>{
   img.addEventListener('error', ()=>{ img.style.display='none'; });
   if(!img.getAttribute('loading')) img.setAttribute('loading','lazy');
@@ -232,13 +241,12 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   document.documentElement.style.setProperty('--motion','none');
 }
 
-// DEPOIMENTOS — carrossel auto-scroll centralizado com dots + reduced-motion
+// DEPOIMENTOS — carrossel auto-scroll com dots + reduced-motion
 (function(){
   var wrap=document.getElementById('avaliacoesParallax');
   if(!wrap) return;
   var cards=wrap.querySelectorAll('.av-placeholder-card');
   if(!cards.length) return;
-  // injeta ticks do painel em cada card (evita 8 edições manuais)
   cards.forEach(function(c){
     if(c.querySelector('.instrument-tick')) return;
     ['t','r','b','l'].forEach(function(p){
@@ -264,17 +272,13 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     wrap.scrollTo({left:left,behavior:'smooth'});
     updateDots();
   }
-  function next(){
-    centerTo(idx+1);
-  }
+  function next(){ centerTo(idx+1); }
   function startAuto(){
     stopAuto();
     if(reduceMotion) return;
     auto=setInterval(next,2800);
   }
-  function stopAuto(){
-    if(auto){ clearInterval(auto); auto=null; }
-  }
+  function stopAuto(){ if(auto){ clearInterval(auto); auto=null; } }
   if(dots){
     cards.forEach(function(_,i){
       var b=document.createElement('button');
@@ -334,7 +338,7 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
 applyData();
 revealOnScroll();
 
-// Delight — feedback preciso no CTA (microinteração sutil)
+// Delight — feedback no CTA
 document.querySelectorAll('.js-reservar.btn').forEach(function(b){
   b.addEventListener('click', function(){
     var orig=b.textContent;
@@ -345,4 +349,3 @@ document.querySelectorAll('.js-reservar.btn').forEach(function(b){
     setTimeout(function(){ b.textContent=orig; delete b.dataset.delight; b.style.letterSpacing=''; }, 1800);
   });
 });
-// smooth anchor offset handled by CSS scroll-padding
