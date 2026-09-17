@@ -1,62 +1,18 @@
 // =====================
-// DADOS EDITÁVEIS — ALTERE AQUI (PROTÓTIPO FICTÍCIO)
-// Troque apenas este bloco para atualizar todo o site.
+// DADOS DA PÁGINA (PROTÓTIPO FICTÍCIO)
+// A base de conhecimento completa do empreendimento fica em
+// data/empreendimento.php, que é a fonte única usada pelo chatbot.
+// Aqui ficam apenas os valores que este script realmente aplica no HTML.
 // =====================
 const empreendimento = {
-  nome: "Residencial Aurora do Vale",
-  cidade: "Nova Esperança — RO*",
-  endereco: "Rua das Acácias, 1200 — Bairro Aurora*",
-  cep: "76800-000*",
-  whatsapp: "5569993152511",
-  googleMaps: "https://www.google.com/maps/search/?api=1&query=Rua+das+Acácias,+Nova+Esperança+RO",
-  precoBrisa: "a partir de R$ 189.900* — Modelo Essencial",
-  precoSol: "a partir de R$ 219.900* — Modelo Plus",
-  observacao: "*Valores, endereço e cidade fictícios — protótipo."
+  googleMaps: "https://www.google.com/maps/search/?api=1&query=Rua+das+Acácias,+Nova+Esperança+RO"
 };
-
-// Compatibilidade: hotel/bambus mantêm interface para applyData()
-const hotel = {
-  nome: empreendimento.nome,
-  telefone: "(69) 99315-2511",
-  whatsapp: empreendimento.whatsapp,
-  endereco: empreendimento.endereco,
-  cidade: empreendimento.cidade,
-  cep: empreendimento.cep,
-  googleMaps: empreendimento.googleMaps
-};
-
-const bambus = {
-  nome: "Financiamento Aurora do Vale",
-  telefone: "(69) 99315-2511",
-  endereco: "Rua das Acácias, 1200 — Bairro Aurora",
-  instagram: "",
-  whatsapp: empreendimento.whatsapp,
-  maps: empreendimento.googleMaps
-};
-
-// Mensagem padrão WhatsApp — funil para futuro agente de IA
-const msgHotel = encodeURIComponent(`Olá! Tenho interesse no ${empreendimento.nome} em ${empreendimento.cidade}. Gostaria de saber sobre as casas de 2 e 3 quartos ${empreendimento.precoBrisa} / ${empreendimento.precoSol} e as condições de financiamento. Poderia me ajudar?`);
-const msgBambus = encodeURIComponent(`Olá! Vi o ${empreendimento.nome} e queria simular o financiamento das casas. ${empreendimento.observacao}`);
 
 // =====================
 // LINKS DINÂMICOS
 // =====================
 function applyData(){
-  document.querySelectorAll('.js-hotel-endereco').forEach(el=> el.textContent = hotel.endereco);
-  document.querySelectorAll('.js-hotel-cidade').forEach(el=> el.textContent = `${hotel.cidade} — ${hotel.cep || ''}`.trim());
-  document.querySelectorAll('.js-hotel-telefone').forEach(el=> el.textContent = hotel.telefone);
-  document.querySelectorAll('.js-bambus-endereco').forEach(el=> el.innerHTML = `${bambus.endereco}, <span style="white-space:nowrap">Nova Esperança — RO*</span>`);
-  document.querySelectorAll('.js-bambus-telefone').forEach(el=> el.textContent = bambus.telefone);
-
-  const waHotel = hotel.whatsapp ? `https://wa.me/${hotel.whatsapp}?text=${msgHotel}` : `https://wa.me/?text=${msgHotel}`;
-  const waBambus = bambus.whatsapp ? `https://wa.me/${bambus.whatsapp}?text=${msgBambus}` : `https://wa.me/?text=${msgBambus}`;
-  document.querySelectorAll('.js-reservar').forEach(a=> { a.href = waHotel; a.target='_blank'; a.rel='noopener'; });
-  document.querySelectorAll('.js-bambus-whatsapp').forEach(a=> { a.href = waBambus; a.target='_blank'; a.rel='noopener'; });
-  document.querySelectorAll('.js-bambus-link').forEach(a=> {
-    a.href = bambus.instagram || waBambus;
-    a.target='_blank'; a.rel='noopener';
-  });
-  document.querySelectorAll('.js-maps').forEach(a=> { a.href = hotel.googleMaps; });
+  document.querySelectorAll('.js-maps').forEach(a=> { a.href = empreendimento.googleMaps; });
 }
 
 // =====================
@@ -92,6 +48,31 @@ document.addEventListener('keydown', (e)=>{
     navMobile.classList.remove('open');
   }
 });
+
+// PRIMEIRA TELA: o hero ocupa a altura da tela MENOS o que divide a dobra com ele
+// (regra "Hero de pagina: altura de tela cheia" do CLAUDE.md raiz).
+// O menu e fixed, entao nao ocupa espaco no fluxo e nao entra na conta; quem
+// entra e a barra de informacoes logo abaixo do hero. A medida precisa ser
+// feita, nao chutada: muda por breakpoint, por safe-area e quando a fonte carrega.
+// Nenhum dos elementos medidos recebe a propria altura desta variavel, entao o
+// valor nao vira acumulador ao repetir o resize (ver regra do CLAUDE.md raiz).
+(function(){
+  var hero = document.querySelector('.hero-full');
+  if(!hero) return;
+  var nav  = document.getElementById('navbar');
+  var info = document.querySelector('.infobar');
+  function medirDobra(){
+    var fora = 0;
+    if(nav && getComputedStyle(nav).position !== 'fixed') fora += nav.offsetHeight;
+    if(info) fora += info.offsetHeight;
+    document.documentElement.style.setProperty('--fora-do-hero', Math.round(fora) + 'px');
+  }
+  medirDobra();
+  window.addEventListener('load', medirDobra);
+  window.addEventListener('resize', medirDobra);
+  window.addEventListener('orientationchange', medirDobra);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(medirDobra);
+})();
 
 // HERO — parallax sutil no scroll (apenas desktop)
 (function(){
@@ -148,10 +129,24 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   const cards=Array.from(stage.querySelectorAll('.galeria-ref-card'));
   const btnPrev=document.getElementById('galeriaPrev');
   const btnNext=document.getElementById('galeriaNext');
+  const count=document.getElementById('galeriaCount');
   if(!cards.length || !btnPrev || !btnNext) return;
 
   const total=cards.length;
   let order=[0,1,2,3,4,5,6,7];
+
+  // Promove data-src/data-srcset para os atributos reais. Os quatro cartoes que
+  // nascem escondidos so baixam a foto quando entram em cena: sem isto o
+  // primeiro carregamento traz as 8, e metade nunca e vista.
+  function carregar(card){
+    if(card.dataset.carregado) return;
+    card.dataset.carregado='1';
+    card.querySelectorAll('source[data-srcset], img[data-srcset]').forEach(function(el){
+      el.srcset = el.dataset.srcset; delete el.dataset.srcset;
+    });
+    const img = card.querySelector('img[data-src]');
+    if(img){ img.src = img.dataset.src; delete img.dataset.src; }
+  }
   let busy=false;
   const posList=['center','left','right','back'];
 
@@ -159,6 +154,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     cards.forEach((card,i)=>{
       const pos=order.indexOf(i);
       const target=pos<4 ? posList[pos] : 'hidden';
+      if(target!=='hidden') carregar(card);
       if(stagger){
         const delay=pos*80;
         card.style.transitionDelay=delay+'ms';
@@ -166,6 +162,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       }
       card.setAttribute('data-pos',target);
     });
+    if(count) count.textContent=(order[0]+1)+' / '+total;
     if(stagger){
       setTimeout(()=>{
         cards.forEach(card=>{
@@ -190,8 +187,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     setTimeout(()=>{ busy=false; },950);
   }
 
-  btnNext.addEventListener('click',()=>rotate(1));
-  btnPrev.addEventListener('click',()=>rotate(-1));
+  btnNext.addEventListener('click',()=>rotate(-1));
+  btnPrev.addEventListener('click',()=>rotate(1));
 
   applyPositions(false);
 })();
@@ -226,27 +223,28 @@ function revealOnScroll(){
     const rect = el.getBoundingClientRect();
     if(rect.top < window.innerHeight - 80) el.classList.add('in');
   });
-  document.querySelectorAll('.flow-line').forEach(el=>{
-    const rect = el.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 40) el.classList.add('active');
-  });
 }
 
 // harden
 document.querySelectorAll('img').forEach(img=>{
   img.addEventListener('error', ()=>{ img.style.display='none'; });
-  if(!img.getAttribute('loading')) img.setAttribute('loading','lazy');
+  // Nunca marcar como lazy a imagem prioritaria: o hero e o LCP da pagina e ja
+  // vem com preload + fetchpriority="high". As tres dicas juntas se contradizem.
+  if(img.fetchPriority === 'high' || img.getAttribute('loading')) return;
+  img.setAttribute('loading','lazy');
 });
 if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   document.documentElement.style.setProperty('--motion','none');
 }
 
-// DEPOIMENTOS — carrossel auto-scroll com dots + reduced-motion
+// DEPOIMENTOS — carrossel em laco continuo (clona o conjunto e reposiciona sem animacao)
 (function(){
   var wrap=document.getElementById('avaliacoesParallax');
   if(!wrap) return;
-  var cards=wrap.querySelectorAll('.av-placeholder-card');
+  var cards=Array.prototype.slice.call(wrap.querySelectorAll('.av-placeholder-card'));
   if(!cards.length) return;
+  var total=cards.length;
+
   cards.forEach(function(c){
     if(c.querySelector('.instrument-tick')) return;
     ['t','r','b','l'].forEach(function(p){
@@ -256,51 +254,111 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       c.appendChild(s);
     });
   });
+
+  // Copia do conjunto: e ela que entra na tela enquanto o original sai,
+  // entao nunca aparece espaco vazio nem "rebobinar" ao chegar no fim.
+  cards.forEach(function(c){
+    var clone=c.cloneNode(true);
+    clone.setAttribute('aria-hidden','true');
+    clone.removeAttribute('id');
+    wrap.appendChild(clone);
+  });
+  var primeiroClone=wrap.children[total];
+
   var dots=document.getElementById('avDots');
-  var idx=0;
-  var auto=null;
+  var idx=0, auto=null, passo=0, conjunto=0, visiveis=1, paginas=total;
   var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function updateDots(){
+
+  var LARGURA_MIN=280;   // abaixo disso o depoimento fica apertado demais
+  function medir(){
+    var cs=getComputedStyle(wrap);
+    var gap=parseFloat(cs.columnGap)||14;
+    var util=wrap.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    // Quantas colunas cabem com cartao de pelo menos LARGURA_MIN. Os cartoes
+    // dividem exatamente a largura util (ver --av-cols no CSS), entao nunca sobra
+    // pedaco de cartao aparecendo na borda do trilho.
+    visiveis=Math.max(1, Math.min(total, Math.floor((util+gap)/(LARGURA_MIN+gap))));
+    wrap.style.setProperty('--av-cols', visiveis);
+    // so depois de aplicar a largura e que a medida de rolagem vale
+    passo=cards.length>1 ? cards[1].offsetLeft - cards[0].offsetLeft : cards[0].offsetWidth;
+    conjunto=primeiroClone.offsetLeft - cards[0].offsetLeft;
+    var novas=Math.ceil(total/visiveis);
+    if(novas!==paginas || !dots || dots.children.length!==novas){
+      paginas=novas;
+      montarDots();
+    }
+  }
+  function semAnimacao(fn){
+    var antes=wrap.style.scrollBehavior;
+    wrap.style.scrollBehavior='auto';
+    fn();
+    wrap.style.scrollBehavior=antes;
+  }
+  function normalizar(){
+    if(!conjunto) return;
+    if(wrap.scrollLeft>=conjunto-1) semAnimacao(function(){ wrap.scrollLeft-=conjunto; });
+    else if(wrap.scrollLeft<0) semAnimacao(function(){ wrap.scrollLeft+=conjunto; });
+  }
+  function montarDots(){
     if(!dots) return;
-    Array.from(dots.children).forEach(function(b,i){ b.classList.toggle('is-active', i===idx); b.setAttribute('aria-selected', i===idx); });
-  }
-  function centerTo(i){
-    idx=(i+cards.length)%cards.length;
-    var card=cards[idx];
-    if(!card) return;
-    var left=card.offsetLeft - (wrap.clientWidth - card.offsetWidth)/2;
-    wrap.scrollTo({left:left,behavior:'smooth'});
+    dots.innerHTML='';
+    dots.hidden = paginas<=1;            // tudo visivel de uma vez: indicador nao serve pra nada
+    if(paginas<=1) return;
+    for(var i=0;i<paginas;i++){
+      (function(i){
+        var primeiro=i*visiveis+1;
+        var ultimo=Math.min(total, primeiro+visiveis-1);
+        var b=document.createElement('button');
+        b.type='button'; b.setAttribute('role','tab');
+        b.setAttribute('aria-label', primeiro===ultimo
+          ? 'Ir para o depoimento '+primeiro
+          : 'Ir para os depoimentos '+primeiro+' a '+ultimo);
+        b.addEventListener('click',function(){ irPara(i*visiveis); stopAuto(); setTimeout(startAuto,4000); });
+        dots.appendChild(b);
+      })(i);
+    }
     updateDots();
   }
-  function next(){ centerTo(idx+1); }
-  function startAuto(){
-    stopAuto();
-    if(reduceMotion) return;
-    auto=setInterval(next,2800);
-  }
-  function stopAuto(){ if(auto){ clearInterval(auto); auto=null; } }
-  if(dots){
-    cards.forEach(function(_,i){
-      var b=document.createElement('button');
-      b.type='button'; b.setAttribute('role','tab'); b.setAttribute('aria-label','Ir para depoimento '+(i+1));
-      b.addEventListener('click', function(){ centerTo(i); stopAuto(); setTimeout(startAuto,4000); });
-      dots.appendChild(b);
+  function updateDots(){
+    if(!dots || dots.hidden) return;
+    var ativa=Math.floor(idx/visiveis)%paginas;
+    Array.prototype.forEach.call(dots.children,function(b,i){
+      b.classList.toggle('is-active', i===ativa);
+      b.setAttribute('aria-selected', i===ativa);
     });
+  }
+  function irPara(i){
+    normalizar();
+    idx=((i%total)+total)%total;
+    wrap.scrollTo({left:cards[idx].offsetLeft - cards[0].offsetLeft, behavior:'smooth'});
     updateDots();
   }
+  function next(){
+    normalizar();
+    // avanca uma pagina inteira; ao passar do fim entra nas copias e o
+    // normalizar() da proxima chamada devolve o trilho ao inicio sem animacao
+    var atual=passo ? Math.round(wrap.scrollLeft/passo) : 0;
+    wrap.scrollTo({left:(atual+visiveis)*passo, behavior:'smooth'});
+  }
+  function startAuto(){ stopAuto(); if(reduceMotion || paginas<=1) return; auto=setInterval(next,4200); }
+  function stopAuto(){ if(auto){ clearInterval(auto); auto=null; } }
+
   wrap.addEventListener('mouseenter',stopAuto);
+  wrap.addEventListener('mouseleave',startAuto);
   wrap.addEventListener('touchstart',stopAuto,{passive:true});
   wrap.addEventListener('touchend',function(){ setTimeout(startAuto,2000); });
-  wrap.addEventListener('mouseleave',startAuto);
-  wrap.addEventListener('scroll', function(){
-    var c=Math.round(wrap.scrollLeft / (cards[0].offsetWidth+14));
-    if(c!==idx && c>=0 && c<cards.length){ idx=c; updateDots(); }
-  }, {passive:true});
-  setTimeout(function(){ centerTo(0); }, 300);
+  wrap.addEventListener('scroll',function(){
+    if(!passo) return;
+    var i=Math.round(wrap.scrollLeft/passo)%total;
+    if(i!==idx && i>=0){ idx=i; updateDots(); }
+  },{passive:true});
+
+  medir();
+  window.addEventListener('resize',function(){ medir(); normalizar(); });
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+
   var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting) startAuto(); else stopAuto();
-    });
+    entries.forEach(function(e){ if(e.isIntersecting) startAuto(); else stopAuto(); });
   },{threshold:0.2});
   io.observe(wrap);
 })();
@@ -324,28 +382,8 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   }, {passive:true});
   card.addEventListener('mouseleave', function(){ card.style.transform=''; });
 })();
-// onboard — empty-state galeria
-(function(){
-  const track=document.getElementById('galeriaTrack');
-  if(track && !track.children.length){
-    track.innerHTML='<p style="padding:24px;color:var(--mid)">Galeria em atualização — novas fotos em breve.</p>';
-  }
-})();
-
 // =====================
 // INIT
 // =====================
 applyData();
 revealOnScroll();
-
-// Delight — feedback no CTA
-document.querySelectorAll('.js-reservar.btn').forEach(function(b){
-  b.addEventListener('click', function(){
-    var orig=b.textContent;
-    if(b.dataset.delight) return;
-    b.dataset.delight='1';
-    b.textContent='Abrindo WhatsApp ✓';
-    b.style.letterSpacing='0.06em';
-    setTimeout(function(){ b.textContent=orig; delete b.dataset.delight; b.style.letterSpacing=''; }, 1800);
-  });
-});

@@ -1,0 +1,16 @@
+# Ambiente
+.env
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Utilitarios e backups descartaveis (nunca vao para producao)
+_temp/

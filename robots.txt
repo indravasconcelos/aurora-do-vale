@@ -1,0 +1,16 @@
+# Residencial Aurora do Vale
+#
+# PROTOTIPO: precos, endereco, cidade e depoimentos sao ficticios.
+# Enquanto for assim, nada deve ser indexado — seria oferta falsa no Google.
+# AO VIRAR SITE REAL, trocar este bloco por:
+#   User-agent: *
+#   Allow: /
+#   Disallow: /_temp/
+#   Disallow: /api/
+#   Disallow: /config/
+#   Disallow: /data/
+
+User-agent: *
+Disallow: /
+
+Sitemap: https://www.auroradovale.com.br/sitemap.xml

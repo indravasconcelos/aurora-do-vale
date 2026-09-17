@@ -5,25 +5,60 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Residencial Aurora do Vale | Casas Populares em Nova Esperança - RO</title>
 <meta name="description" content="Casas populares de 2 e 3 quartos em Nova Esperança, Rondônia. A partir de R$ 189.900. Projeto funcional, acabamento econômico e financiamento facilitado.">
-<meta property="og:title" content="Residencial Aurora do Vale | Casas Populares 2 e 3 Quartos">
-<meta property="og:description" content="A partir de R$ 189.900. Casas de 48m² e 58m² com financiamento facilitado. Protótipo fictício.">
-<meta property="og:image" content="assets/hero (2).jpg">
+
+<!-- ============================================================
+     DOMINIO: https://www.auroradovale.com.br ainda NAO foi comprado.
+     Ao publicar, conferir se e este mesmo e ajustar tambem robots.txt,
+     sitemap.xml e o campo "url" do JSON-LD.
+     ============================================================ -->
+<link rel="canonical" href="https://www.auroradovale.com.br/">
+
+<!-- PROTOTIPO: precos, endereco e depoimentos sao ficticios. Enquanto for
+     assim, a pagina NAO deve ser indexada: seria oferta falsa no Google.
+     Ao virar site real, trocar por: <meta name="robots" content="index, follow"> -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
-<meta name="robots" content="index, follow">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231a1a1a'/><text x='50' y='62' font-size='34' text-anchor='middle' fill='%23ffffff' font-family='Cormorant Garamond, serif' font-weight='700'>AV</text><circle cx='72' cy='26' r='6' fill='%2316a34a'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/hero (2).jpg" fetchpriority="high">
-  <link rel="stylesheet" href="style.css">
+<meta property="og:site_name" content="Residencial Aurora do Vale">
+<meta property="og:url" content="https://www.auroradovale.com.br/">
+<meta property="og:title" content="Residencial Aurora do Vale | Casas Populares de 2 e 3 Quartos">
+<meta property="og:description" content="A partir de R$ 189.900. Casas de 48m² e 58m² com financiamento facilitado.">
+<meta property="og:image" content="https://www.auroradovale.com.br/assets/og-share.png?v=20260917-01">
+<meta property="og:image:secure_url" content="https://www.auroradovale.com.br/assets/og-share.png?v=20260917-01">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Logo do Residencial Aurora do Vale">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Residencial Aurora do Vale | Casas Populares de 2 e 3 Quartos">
+<meta name="twitter:description" content="A partir de R$ 189.900. Casas de 48m² e 58m² com financiamento facilitado.">
+<meta name="twitter:image" content="https://www.auroradovale.com.br/assets/og-share.png?v=20260917-01">
+<meta name="twitter:image:alt" content="Logo do Residencial Aurora do Vale">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png?v=20260917-04">
+<link rel="apple-touch-icon" href="assets/icons/icon-180.png?v=20260917-04">
+<link rel="manifest" href="manifest.json?v=20260917-04">
+<meta name="theme-color" content="#15803d">
+<meta name="msapplication-config" content="browserconfig.xml">
+<!-- Fontes servidas pelo proprio site (assets/fonts). Preload so das duas
+     usadas acima da dobra: o titulo do hero e o texto corrido. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cormorant-garamond-latin-400-normal.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/inter-latin-400-normal.woff2">
+  <link rel="preload" as="image" href="assets/hero-768.webp?v=20260917-01" fetchpriority="high"
+        imagesrcset="assets/hero-480.webp?v=20260917-01 480w, assets/hero-768.webp?v=20260917-01 768w, assets/hero-1200.webp?v=20260917-01 1200w, assets/hero-1920.webp?v=20260917-01 1920w" imagesizes="100vw">
+  <link rel="stylesheet" href="style.css?v=20260917-04">
+  <link rel="stylesheet" href="chatbot.css?v=20260917-04" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="chatbot.css?v=20260917-04"></noscript>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "HousingComplex",
     "name": "Residencial Aurora do Vale",
     "description": "Casas populares de 2 e 3 quartos em Nova Esperança, Rondônia. Projeto funcional e financiamento facilitado.",
-    "telephone": "+55-69-99315-2511",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Rua das Acácias, 1200 - Bairro Aurora",
@@ -37,7 +72,8 @@
       "latitude": -11.02,
       "longitude": -62.08
     },
-    "image": "assets/hero (2).jpg",
+    "url": "https://www.auroradovale.com.br/",
+    "image": "https://www.auroradovale.com.br/assets/og-share.png",
     "priceRange": "$$",
     "amenityFeature": [
       {"@type": "LocationFeatureSpecification", "name": "Vaga de garagem", "value": true},
@@ -45,16 +81,12 @@
       {"@type": "LocationFeatureSpecification", "name": "Financiamento", "value": true},
       {"@type": "LocationFeatureSpecification", "name": "Projeto funcional", "value": true}
     ],
-    "sameAs": [],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "127"
-    }
+    "sameAs": []
   }
   </script>
 </head>
 <body>
+<a class="pular-para-conteudo" href="#hero">Pular para o conteúdo</a>
 
 <!-- NAV -->
 <nav id="navbar" class="nav">
@@ -78,7 +110,7 @@
       <a href="#faq">Dúvidas</a>
       <a href="#localizacao">Localização</a>
       <a href="#avaliacoes">Depoimentos</a>
-      <a href="#" class="nav-cta">Quero saber mais</a>
+      <a href="#" class="nav-cta" onclick="abrirChatbot(); return false;">Quero saber mais</a>
     </div>
     <button class="nav-burger" id="burger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -93,35 +125,33 @@
   <a href="#faq">Dúvidas</a>
   <a href="#localizacao">Localização</a>
   <a href="#avaliacoes">Depoimentos</a>
-        <a href="#" class="btn btn-dark">Quero saber mais</a>
+        <a href="#" class="btn btn-dark" onclick="abrirChatbot(); return false;">Quero saber mais</a>
 </div>
+
+<main id="conteudo">
 
 <!-- HERO — full-screen -->
 <section id="hero" class="hero-full">
   <div class="hero-full-bg">
-    <img src="assets/hero (2).jpg" alt="Casa popular moderna com acabamento em madeira e design sofisticado — Residencial Aurora do Vale" id="heroImg" fetchpriority="high" decoding="async">
+    <img src="assets/hero-1200.webp?v=20260917-01"
+           srcset="assets/hero-480.webp?v=20260917-01 480w, assets/hero-768.webp?v=20260917-01 768w, assets/hero-1200.webp?v=20260917-01 1200w, assets/hero-1920.webp?v=20260917-01 1920w"
+           sizes="100vw"
+           width="1920" height="1080"
+           alt="Fachada de casa popular do Residencial Aurora do Vale ao entardecer"
+           id="heroImg" fetchpriority="high" loading="eager" decoding="async">
   </div>
   <div class="hero-full-overlay"></div>
-  <div class="hero-full-content">
+  <div class="hero-full-content container">
     <div class="hero-full-inner">
-      <div class="hero-full-logo reveal">
-        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="40" height="40" rx="10" fill="rgba(255,255,255,0.1)"/>
-          <path d="M13 13.5H20.2C22.8 13.5 24.6 15 24.6 17.3C24.6 19.6 22.8 21.1 20.2 21.1H13V28.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M20.8 21.1H27.2C28.9 21.1 30.2 22.2 30.2 24.1C30.2 26 28.9 27.1 27.2 27.1H20.8" stroke="#16a34a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="30" cy="10.5" r="2.3" fill="#16a34a" stroke="#fff" stroke-width="1.2"/>
-        </svg>
-        <span>AURORA DO VALE</span>
-      </div>
-      <p class="hero-full-eyebrow reveal d1">Residencial · Nova Esperança — RO</p>
+      <p class="hero-full-eyebrow reveal d1">Residencial · Nova Esperança, RO</p>
       <h1 class="hero-full-title reveal d2">
-        <span>Transformando sonhos</span>
-        <span>em realidade.</span>
+        <span class="hero-title-line">Transformando sonhos</span>
+        <span class="hero-title-accent">em realidade.</span>
       </h1>
+      <div class="hero-title-divider reveal d2"></div>
       <p class="hero-full-sub reveal d3">Casas populares de 2 e 3 quartos com acabamento de qualidade e financiamento facilitado.</p>
       <div class="hero-full-actions reveal d4">
-        <a href="#" class="btn btn-hero-primary">Quero mais informações</a>
-      </div>
+        <a href="#" class="btn btn-hero-primary" onclick="abrirChatbot(); return false;">Quero mais informações</a>
       </div>
     </div>
   </div>
@@ -130,13 +160,13 @@
 <!-- BARRA INFO -->
 <div class="infobar">
   <div class="infobar-inner">
-    <span>🏠 2 quartos</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-5h18v5"/><path d="M3 18v2"/><path d="M21 18v2"/><path d="M6 13V9h5v4"/></svg>2 quartos</span>
     <span class="infobar-sep">·</span>
-    <span>🏡 3 quartos</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-5h18v5"/><path d="M3 18v2"/><path d="M21 18v2"/><path d="M6 13V9h5v4"/></svg>3 quartos</span>
     <span class="infobar-sep">·</span>
-    <span>🅿️ Vaga de garagem</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16h16"/><path d="M5 16V11l2-4h10l2 4v5"/><circle cx="7.5" cy="16.5" r="1.5"/><circle cx="16.5" cy="16.5" r="1.5"/></svg>Vaga de garagem</span>
     <span class="infobar-sep">·</span>
-    <span>🌿 Área externa</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-5"/><path d="M12 4l5 9H7l5-9z"/><path d="M12 9l3.5 6h-7L12 9z"/></svg>Área externa</span>
   </div>
 </div>
 
@@ -146,14 +176,13 @@
 <section id="diferenciais" class="section residencial">
   <div class="container">
     <div class="residencial-header">
-      <p class="eyebrow">— Conheça nossos modelos</p>
+      <p class="eyebrow">Conheça nossos modelos</p>
       <h2>Espaços pensados <em>para você.</em></h2>
       <p class="residencial-sub">Duas opções funcionais com acabamento de qualidade, pensadas para quem quer morar bem.</p>
     </div>
 
     <div class="residencial-models">
       <div class="residencial-card reveal">
-        <div class="residencial-card-badge">2 quartos</div>
         <div class="residencial-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V11h6v10"/><path d="M3 11h18"/><path d="M7 7v4"/><path d="M17 7v4"/></svg>
         </div>
@@ -168,12 +197,11 @@
         </ul>
         <div class="residencial-card-price">
           <span>A partir de</span>
-          <strong>R$ 189.900*</strong>
+          <strong>R$ 189.900</strong>
         </div>
       </div>
 
       <div class="residencial-card residencial-card--destaque reveal d1">
-        <div class="residencial-card-badge">3 quartos</div>
         <div class="residencial-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V11h6v10"/><path d="M3 11h18"/><path d="M7 7v4"/><path d="M12 7v4"/><path d="M17 7v4"/><circle cx="12" cy="16" r="1"/></svg>
         </div>
@@ -188,7 +216,7 @@
         </ul>
         <div class="residencial-card-price">
           <span>A partir de</span>
-          <strong>R$ 219.900*</strong>
+          <strong>R$ 219.900</strong>
         </div>
       </div>
     </div>
@@ -201,26 +229,27 @@
 <section id="galeria" class="section galeria-ref">
   <div class="container">
     <div class="galeria-ref-header">
-      <p class="eyebrow">— Galeria</p>
+      <p class="eyebrow">Galeria</p>
       <h2>Conheça cada <em>detalhe.</em></h2>
-      <p class="galeria-ref-sub">Imagens reais do empreendimento — fachada, ambientes e espaços.</p>
+      <p class="galeria-ref-sub">Fachada, ambientes e áreas externas.</p>
     </div>
     <div class="galeria-ref-stage" id="galeriaStage">
-      <div class="galeria-ref-card" data-pos="back"><img src="assets/casa-07.jpg" alt="Área externa da casa" loading="lazy"></div>
-      <div class="galeria-ref-card" data-pos="left"><img src="assets/casa-01.jpg" alt="Fachada da casa popular" loading="lazy"></div>
-      <div class="galeria-ref-card" data-pos="center"><img src="assets/casa-02.jpg" alt="Sala de estar moderna" loading="lazy"></div>
-      <div class="galeria-ref-card" data-pos="right"><img src="assets/casa-03.jpg" alt="Quarto principal" loading="lazy"></div>
-      <div class="galeria-ref-card" data-pos="hidden"><img src="assets/casa-04.jpg" alt="Cozinha planejada" loading="lazy"></div>
-      <div class="galeria-ref-card" data-pos="hidden"><img src="assets/casa-05.jpg" alt="Banheiro moderno" loading="lazy"></div>
-      <div class="galeria-ref-card" data-pos="hidden"><img src="assets/casa-06.jpg" alt="Vaga coberta" loading="lazy"></div>
-      <div class="galeria-ref-card" data-pos="hidden"><img src="assets/casa-08.jpg" alt="Varanda da casa" loading="lazy"></div>
+      <div class="galeria-ref-card" data-pos="back"><picture><source type="image/avif" srcset="assets/casa-07-320.avif?v=20260917-04 320w, assets/casa-07-480.avif?v=20260917-04 480w, assets/casa-07-640.avif?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px"><img src="assets/casa-07-480.webp?v=20260917-04" srcset="assets/casa-07-320.webp?v=20260917-04 320w, assets/casa-07-480.webp?v=20260917-04 480w, assets/casa-07-640.webp?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px" width="800" height="530" alt="Área externa da casa" loading="lazy" decoding="async"></picture></div>
+      <div class="galeria-ref-card" data-pos="left"><picture><source type="image/avif" srcset="assets/casa-01-320.avif?v=20260917-04 320w, assets/casa-01-480.avif?v=20260917-04 480w, assets/casa-01-640.avif?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px"><img src="assets/casa-01-480.webp?v=20260917-04" srcset="assets/casa-01-320.webp?v=20260917-04 320w, assets/casa-01-480.webp?v=20260917-04 480w, assets/casa-01-640.webp?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px" width="800" height="530" alt="Fachada da casa popular" loading="lazy" decoding="async"></picture></div>
+      <div class="galeria-ref-card" data-pos="center"><picture><source type="image/avif" srcset="assets/casa-02-320.avif?v=20260917-04 320w, assets/casa-02-480.avif?v=20260917-04 480w, assets/casa-02-640.avif?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px"><img src="assets/casa-02-480.webp?v=20260917-04" srcset="assets/casa-02-320.webp?v=20260917-04 320w, assets/casa-02-480.webp?v=20260917-04 480w, assets/casa-02-640.webp?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px" width="800" height="530" alt="Sala de estar moderna" loading="lazy" decoding="async"></picture></div>
+      <div class="galeria-ref-card" data-pos="right"><picture><source type="image/avif" srcset="assets/casa-03-320.avif?v=20260917-04 320w, assets/casa-03-480.avif?v=20260917-04 480w, assets/casa-03-640.avif?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px"><img src="assets/casa-03-480.webp?v=20260917-04" srcset="assets/casa-03-320.webp?v=20260917-04 320w, assets/casa-03-480.webp?v=20260917-04 480w, assets/casa-03-640.webp?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px" width="800" height="530" alt="Quarto principal" loading="lazy" decoding="async"></picture></div>
+      <div class="galeria-ref-card" data-pos="hidden"><picture><source type="image/avif" data-srcset="assets/casa-04-320.avif?v=20260917-04 320w, assets/casa-04-480.avif?v=20260917-04 480w, assets/casa-04-640.avif?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px"><img data-src="assets/casa-04-480.webp?v=20260917-04" data-srcset="assets/casa-04-320.webp?v=20260917-04 320w, assets/casa-04-480.webp?v=20260917-04 480w, assets/casa-04-640.webp?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px" width="800" height="530" alt="Cozinha planejada" loading="lazy" decoding="async"></picture></div>
+      <div class="galeria-ref-card" data-pos="hidden"><picture><source type="image/avif" data-srcset="assets/casa-05-320.avif?v=20260917-04 320w, assets/casa-05-480.avif?v=20260917-04 480w, assets/casa-05-640.avif?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px"><img data-src="assets/casa-05-480.webp?v=20260917-04" data-srcset="assets/casa-05-320.webp?v=20260917-04 320w, assets/casa-05-480.webp?v=20260917-04 480w, assets/casa-05-640.webp?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px" width="800" height="530" alt="Banheiro moderno" loading="lazy" decoding="async"></picture></div>
+      <div class="galeria-ref-card" data-pos="hidden"><picture><source type="image/avif" data-srcset="assets/casa-06-320.avif?v=20260917-04 320w, assets/casa-06-480.avif?v=20260917-04 480w, assets/casa-06-640.avif?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px"><img data-src="assets/casa-06-480.webp?v=20260917-04" data-srcset="assets/casa-06-320.webp?v=20260917-04 320w, assets/casa-06-480.webp?v=20260917-04 480w, assets/casa-06-640.webp?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px" width="800" height="530" alt="Vaga coberta" loading="lazy" decoding="async"></picture></div>
+      <div class="galeria-ref-card" data-pos="hidden"><picture><source type="image/avif" data-srcset="assets/casa-08-320.avif?v=20260917-04 320w, assets/casa-08-480.avif?v=20260917-04 480w, assets/casa-08-640.avif?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px"><img data-src="assets/casa-08-480.webp?v=20260917-04" data-srcset="assets/casa-08-320.webp?v=20260917-04 320w, assets/casa-08-480.webp?v=20260917-04 480w, assets/casa-08-640.webp?v=20260917-04 640w" sizes="(max-width:479px) 75vw, (max-width:767px) 55vw, (max-width:1023px) 40vw, 460px" width="800" height="530" alt="Varanda da casa" loading="lazy" decoding="async"></picture></div>
     </div>
     <div class="galeria-ref-nav">
-      <button class="galeria-ref-btn" id="galeriaPrev" aria-label="Anterior">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+      <button class="galeria-ref-btn" id="galeriaPrev" aria-label="Foto anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <button class="galeria-ref-btn" id="galeriaNext" aria-label="Próximo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      <p class="galeria-ref-count" id="galeriaCount" aria-live="polite">1 / 8</p>
+      <button class="galeria-ref-btn" id="galeriaNext" aria-label="Próxima foto">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
       </button>
     </div>
   </div>
@@ -231,19 +260,23 @@
   <div class="container">
     <div class="bambus-grid">
       <div class="bambus-text">
-        <p class="eyebrow">— Financiamento</p>
+        <p class="eyebrow">Financiamento</p>
         <h2>Possibilidade de <em>financiamento</em> acessível.</h2>
-        <p class="lead">A casa própria pode estar mais perto do que você imagina. Consulte condições e simule o financiamento das casas do Aurora do Vale.*</p>
+        <p class="lead">A casa própria pode estar mais perto do que você imagina. Consulte condições e simule o financiamento das casas do Aurora do Vale.</p>
         <div class="bambus-tags">
           <span>ENTRADA FACILITADA</span>
-          <span>PARCELAS A PARTIR DE R$ 850*</span>
+          <span>PARCELAS A PARTIR DE R$ 850</span>
         </div>
-
+        <a href="#" class="btn btn-dark" onclick="abrirChatbot(); return false;">Saber mais</a>
       </div>
       <div class="bambus-image reveal-img">
-        <img src="assets/casa-04.jpg" alt="Família em nova casa — Residencial Aurora do Vale, imagem ilustrativa">
+        <picture><source type="image/avif" srcset="assets/casa-04-320.avif?v=20260917-04 320w, assets/casa-04-480.avif?v=20260917-04 480w, assets/casa-04-640.avif?v=20260917-04 640w" sizes="(max-width:1023px) 92vw, 590px"><img src="assets/casa-04-480.webp?v=20260917-04" srcset="assets/casa-04-320.webp?v=20260917-04 320w, assets/casa-04-480.webp?v=20260917-04 480w, assets/casa-04-640.webp?v=20260917-04 640w"
+             sizes="(max-width:1023px) 92vw, 590px" width="800" height="1200"
+             alt="Interior de casa entregue no Residencial Aurora do Vale, imagem ilustrativa" loading="lazy" decoding="async"></picture>
         <div class="bambus-image-secondary">
-          <img src="assets/casa-05.jpg" alt="Atendimento — simulação de financiamento, imagem ilustrativa">
+          <picture><source type="image/avif" srcset="assets/casa-05-320.avif?v=20260917-04 320w, assets/casa-05-480.avif?v=20260917-04 480w" sizes="(max-width:1023px) 34vw, 200px"><img src="assets/casa-05-320.webp?v=20260917-04" srcset="assets/casa-05-320.webp?v=20260917-04 320w, assets/casa-05-480.webp?v=20260917-04 480w"
+               sizes="(max-width:1023px) 34vw, 200px" width="800" height="533"
+               alt="Banheiro de casa do Residencial Aurora do Vale, imagem ilustrativa" loading="lazy" decoding="async"></picture>
         </div>
       </div>
     </div>
@@ -254,59 +287,59 @@
 <section id="faq" class="section faq">
   <div class="container">
     <div class="faq-header">
-      <p class="eyebrow">— Dúvidas</p>
+      <p class="eyebrow">Dúvidas</p>
       <h2>Perguntas <em>frequentes.</em></h2>
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-resposta-1" id="faq-botao-1">
           <span>Qual a renda mínima para comprar?</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <div class="faq-answer">
-          <p>Não há renda mínima fixa. O financiamento é analisado individualmente pela instituição financeira. Em geral, famílias com renda de até 7 mil reais conseguem boas condições de financiamento.*</p>
+        <div class="faq-answer" id="faq-resposta-1" role="region" aria-labelledby="faq-botao-1">
+          <div class="faq-answer-inner"><p>Não há renda mínima fixa. O financiamento é analisado individualmente pela instituição financeira. Em geral, famílias com renda de até 7 mil reais conseguem boas condições de financiamento.</p></div>
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-resposta-2" id="faq-botao-2">
           <span>Qual o valor das parcelas?</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <div class="faq-answer">
-          <p>As parcelas variam conforme o prazo e a entrada.*</p>
+        <div class="faq-answer" id="faq-resposta-2" role="region" aria-labelledby="faq-botao-2">
+          <div class="faq-answer-inner"><p>As parcelas variam conforme o prazo e a entrada.</p></div>
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-resposta-3" id="faq-botao-3">
           <span>Posso usar o FGTS na compra?</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <div class="faq-answer">
-          <p>Sim! O FGTS pode ser utilizado para dar entrada ou amortizar o financiamento. É necessário estar dentro das regras do programa habitacional.*</p>
+        <div class="faq-answer" id="faq-resposta-3" role="region" aria-labelledby="faq-botao-3">
+          <div class="faq-answer-inner"><p>Sim! O FGTS pode ser utilizado para dar entrada ou amortizar o financiamento. É necessário estar dentro das regras do programa habitacional.</p></div>
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-resposta-4" id="faq-botao-4">
           <span>A casa vem com mobília?</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <div class="faq-answer">
-          <p>Não. As casas são entregues sem mobília, apenas com acabamento básico (piso, azulejo, pintura, esquadrias). Você mobilia do seu jeito, com o orçamento que tiver.*</p>
+        <div class="faq-answer" id="faq-resposta-4" role="region" aria-labelledby="faq-botao-4">
+          <div class="faq-answer-inner"><p>Não. As casas são entregues sem mobília, apenas com acabamento básico (piso, azulejo, pintura, esquadrias). Você mobilia do seu jeito, com o orçamento que tiver.</p></div>
         </div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-resposta-5" id="faq-botao-5">
           <span>O bairro tem escola e posto de saúde perto?</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <div class="faq-answer">
-          <p>Sim, o bairro possui escolas públicas, posto de saúde, mercado e transportes próximos. Tudo o que a família precisa fica a poucos minutos da residência.*</p>
+        <div class="faq-answer" id="faq-resposta-5" role="region" aria-labelledby="faq-botao-5">
+          <div class="faq-answer-inner"><p>Sim, o bairro possui escolas públicas, posto de saúde, mercado e transportes próximos. Tudo o que a família precisa fica a poucos minutos da residência.</p></div>
         </div>
       </div>
     </div>
     <div class="faq-cta">
       <p>Ainda ficou com alguma dúvida?</p>
-      <a href="#" class="faq-cta-btn">Fale conosco</a>
+      <a href="#" class="faq-cta-btn" onclick="abrirChatbot(); return false;">Fale conosco</a>
     </div>
   </div>
 </section>
@@ -316,32 +349,32 @@
   <div class="container">
     <div class="localizacao-grid">
       <div class="localizacao-text">
-        <p class="eyebrow">— Localização</p>
+        <p class="eyebrow">Localização</p>
         <h2>Onde você vai <em>morar.</em></h2>
-        <p class="lead">Residencial Aurora do Vale em Nova Esperança — RO, com acesso fácil e infraestrutura próxima. Consulte condições.*</p>
+        <p class="lead">Residencial Aurora do Vale em Nova Esperança, RO, com acesso fácil e infraestrutura próxima.</p>
 
         <div class="localizacao-flow instrument street-panel">
           <span class="instrument-tick instrument-tick--t" aria-hidden="true"></span><span class="instrument-tick instrument-tick--r" aria-hidden="true"></span><span class="instrument-tick instrument-tick--b" aria-hidden="true"></span><span class="instrument-tick instrument-tick--l" aria-hidden="true"></span>
-          <div class="street-name">Rua das Acácias — Bairro Aurora, Nova Esperança — RO*</div>
+          <div class="street-name">Rua das Acácias · Bairro Aurora · Nova Esperança, RO</div>
           <div class="street-line">
-            <a href="https://www.google.com/maps/search/?api=1&query=Rua+das+Acácias,+Nova+Esperança+RO" target="_blank" rel="noopener" class="street-point" aria-label="Ver região central no mapa">
+            <a href="https://www.google.com/maps/search/?api=1&query=Rua+das+Acácias,+Nova+Esperança+RO" target="_blank" rel="noopener" class="street-point" aria-label="Centro, Nova Esperança: ver no mapa">
               <span class="street-dot"></span>
               <strong>Centro</strong>
               <em>Nova Esperança</em>
             </a>
-            <div class="street-point street-point--hotel" aria-current="location">
-              <span class="street-dot street-dot--hotel"></span>
+            <div class="street-point street-point--localizacao" aria-current="location">
+              <span class="street-dot street-dot--localizacao"></span>
               <strong>Aurora do Vale</strong>
-              <em>1200 · Protótipo</em>
+              <em>1200</em>
               <a href="https://www.google.com/maps/search/?api=1&query=Rua+das+Acácias,+1200,+Nova+Esperança+RO" target="_blank" rel="noopener">Ver no mapa →</a>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=BR-364,+Nova+Esperança+RO" target="_blank" rel="noopener" class="street-point" aria-label="Ver acesso BR no mapa">
+            <a href="https://www.google.com/maps/search/?api=1&query=BR-364,+Nova+Esperança+RO" target="_blank" rel="noopener" class="street-point" aria-label="Acesso BR, fácil saída: ver no mapa">
               <span class="street-dot"></span>
               <strong>Acesso BR</strong>
               <em>Fácil saída</em>
             </a>
           </div>
-          <p class="street-note">*Endereço fictício — protótipo. Infraestrutura próxima.</p>
+          <p class="street-note">Infraestrutura completa na região.</p>
         </div>
 
       </div>
@@ -352,7 +385,7 @@
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           allowfullscreen
-          title="Mapa — Residencial Aurora do Vale, Nova Esperança — RO (fictício)"></iframe>
+          title="Mapa do Residencial Aurora do Vale, Nova Esperança, RO"></iframe>
         <a class="localizacao-map-link js-maps" href="https://www.google.com/maps/search/?api=1&query=Rua+das+Acácias,+1200,+Nova+Esperança+RO" target="_blank" rel="noopener" aria-label="Abrir rota no Google Maps"></a>
       </div>
     </div>
@@ -364,54 +397,45 @@
   <div class="container">
     <div class="avaliacoes-grid">
       <div class="avaliacoes-text">
-        <p class="eyebrow">— Prova social</p>
-        <h2>Histórias de quem <em>conquistou a casa.</em></h2>
-        <div class="avaliacoes-rating" aria-label="Avaliação 4.8 de 5 estrelas, 127 avaliações">
+        <p class="eyebrow">Depoimentos</p>
+        <h2>O que dizem nossos <em>clientes.</em></h2>
+        <div class="avaliacoes-rating" role="img" aria-label="Avaliação 4,8 de 5 estrelas em 127 avaliações">
           <span class="avaliacoes-stars" aria-hidden="true">★★★★★</span>
-          <span class="avaliacoes-score-text"><strong>4.8</strong> (127 avaliações)*</span>
-          <span class="avaliacoes-link">*Depoimentos fictícios — protótipo</span>
+          <span class="avaliacoes-score-text"><strong>4.8</strong> (127 avaliações)</span>
         </div>
-        <p class="lead">Famílias que saíram do aluguel e realizaram o sonho da casa própria no Aurora do Vale. *Relatos fictícios demonstrativos.</p>
-        <div class="avaliacoes-placeholder" id="avaliacoesParallax">
+        <p class="lead">Famílias que saíram do aluguel e realizaram o sonho da casa própria no Aurora do Vale.</p>
+        <div class="avaliacoes-placeholder" id="avaliacoesParallax" role="group" aria-label="Depoimentos: use as setas do teclado para percorrer" tabindex="0">
           <div class="av-placeholder-card instrument">
-            <span>"</span>
             <p>Sair do aluguel foi a melhor decisão. Modelo Essencial 48m² coube no nosso orçamento e ficou do jeito que sonhamos.</p>
-            <em>— Família Silva — Modelo Essencial 2q*</em>
+            <em>Família Silva · Modelo Essencial 2q</em>
           </div>
           <div class="av-placeholder-card instrument">
-            <span>"</span>
             <p>Atendimento claro sobre financiamento. Conseguimos simular e entender as parcelas sem sustos.</p>
-            <em>— Ana P. — Modelo Plus 3q*</em>
+            <em>Ana P. · Modelo Plus 3q</em>
           </div>
           <div class="av-placeholder-card instrument">
-            <span>"</span>
             <p>Projeto funcional, cada canto bem aproveitado. Área externa perfeita para as crianças.</p>
-            <em>— Carlos M. — Modelo Essencial*</em>
+            <em>Carlos M. · Modelo Essencial</em>
           </div>
           <div class="av-placeholder-card instrument">
-            <span>"</span>
             <p>Acabamento simples mas bonito e fácil de cuidar. Entrega dentro do esperado.</p>
-            <em>— Juliana R. — Modelo Plus*</em>
+            <em>Juliana R. · Modelo Plus</em>
           </div>
           <div class="av-placeholder-card instrument">
-            <span>"</span>
             <p>Localização tranquila em Nova Esperança e documentação orientada pela equipe.</p>
-            <em>— Roberto F. — Modelo Essencial*</em>
+            <em>Roberto F. · Modelo Essencial</em>
           </div>
           <div class="av-placeholder-card instrument">
-            <span>"</span>
             <p>Conseguimos planejar a entrada e as parcelas com segurança. Equipe atenciosa.</p>
-            <em>— Marileide — Modelo Plus*</em>
+            <em>Marileide · Modelo Plus</em>
           </div>
           <div class="av-placeholder-card instrument">
-            <span>"</span>
             <p>Primeiro imóvel da família. Sensação de segurança e conquista.</p>
-            <em>— João L. — Modelo Essencial*</em>
+            <em>João L. · Modelo Essencial</em>
           </div>
           <div class="av-placeholder-card instrument">
-            <span>"</span>
             <p>Processo sem promessas falsas. Tudo explicado com transparência.</p>
-            <em>— Cintia P. — Modelo Plus*</em>
+            <em>Cintia P. · Modelo Plus</em>
           </div>
         </div>
         <div class="av-dots" id="avDots" role="tablist" aria-label="Navegar depoimentos"></div>
@@ -423,18 +447,21 @@
 <!-- CTA FINAL -->
 <section class="cta-final">
   <div class="cta-bg">
-    <img src="assets/cta.svg" alt="Residencial à noite — imagem ilustrativa">
+    <picture><source type="image/avif" srcset="assets/casa-07-480.avif?v=20260917-04 480w, assets/casa-07-640.avif?v=20260917-04 640w" sizes="100vw"><img src="assets/casa-07-640.webp?v=20260917-04" srcset="assets/casa-07-480.webp?v=20260917-04 480w, assets/casa-07-640.webp?v=20260917-04 640w"
+         sizes="100vw" width="800" height="531" alt="" aria-hidden="true" loading="lazy" decoding="async"></picture>
   </div>
   <div class="cta-overlay"></div>
   <div class="cta-content">
-    <p class="cta-kicker">Residencial Aurora do Vale — Nova Esperança — RO* *fictício</p>
+    <p class="cta-kicker">Residencial Aurora do Vale · Nova Esperança, RO</p>
     <h2>Seu lar está<br><em>mais perto do que imagina.</em></h2>
     <div class="cta-actions">
-      <a href="#" class="btn btn-light js-maps" target="_blank" rel="noopener">Ver casas disponíveis</a>
+      <a href="#" class="btn btn-light" onclick="abrirChatbot(); return false;">Ver casas disponíveis</a>
     </div>
 
   </div>
 </section>
+
+</main>
 
 <!-- RODAPÉ -->
 <footer class="footer">
@@ -442,8 +469,8 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="footer-logo">AURORA DO VALE</span>
-        <span class="footer-sub">Residencial — Nova Esperança — RO</span>
-        <p>Rua das Acácias, 1200 — Bairro Aurora<br>Nova Esperança — RO<br>76800-000</p>
+        <span class="footer-sub">Residencial · Nova Esperança, RO</span>
+        <p>Rua das Acácias, 1200 · Bairro Aurora<br>Nova Esperança, RO<br>76800-000</p>
       </div>
       <div class="footer-links">
         <a href="#hero">Início</a>
@@ -455,20 +482,16 @@
       </div>
       <div class="footer-cta">
         <p>Pronto para conquistar sua casa?</p>
-  <a href="#" class="btn btn-dark">Quero saber mais</a>
+  <a href="#" class="btn btn-dark" onclick="abrirChatbot(); return false;">Quero saber mais</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Residencial Aurora do Vale — Nova Esperança - RO. Todos os direitos reservados.</span>
+      <span>© 2026 Residencial Aurora do Vale · Nova Esperança, RO. Todos os direitos reservados.</span>
     </div>
   </div>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
-<a href="#" class="whatsapp-float" aria-label="Falar com um especialista">
-  <span>✆</span>
-</a>
-
-<script src="script.js"></script>
+<script src="script.js?v=20260917-04"></script>
+<script src="chatbot.js?v=20260917-04"></script>
 </body>
 </html>

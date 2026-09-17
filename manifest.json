@@ -1,0 +1,15 @@
+{
+  "name": "Residencial Aurora do Vale",
+  "short_name": "Aurora do Vale",
+  "description": "Casas populares de 2 e 3 quartos com financiamento facilitado.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#15803d",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

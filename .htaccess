@@ -1,0 +1,79 @@
+# ============================================================
+# Residencial Aurora do Vale — configuracao do Apache
+# ============================================================
+
+# --- 1. Nunca listar o conteudo de uma pasta -----------------
+Options -Indexes
+ServerSignature Off
+
+# --- 2. Paginas de erro --------------------------------------
+# Caminho do ambiente LOCAL (XAMPP, pasta com espaco = %20).
+# AO PUBLICAR na raiz do dominio, trocar as duas linhas por:
+#   ErrorDocument 403 /erro.php
+#   ErrorDocument 404 /erro.php
+ErrorDocument 403 /Dev-Site/Clientes/Aurora%20do%20Vale/erro.php
+ErrorDocument 404 /Dev-Site/Clientes/Aurora%20do%20Vale/erro.php
+
+# --- 3. Arquivos internos: nunca servir por HTTP -------------
+<FilesMatch "\.(md|env|example|log|sql|ini)$|^\.env|^skills-lock\.json$">
+  Require all denied
+</FilesMatch>
+
+# --- 4. Cabecalhos ------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+  Header unset X-Powered-By
+  Header always unset X-Powered-By
+
+  # A pagina nunca fica em cache do navegador: e o unico arquivo
+  # que nao da para versionar pela URL.
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # Assets carregam ?v= no HTML, entao podem ficar em cache longo.
+  # Fica em mod_headers de proposito: mod_expires vem desativado no
+  # XAMPP desta maquina e o bloco <IfModule mod_expires.c> seria ignorado.
+  <FilesMatch "\.(css|js|jpe?g|png|gif|webp|svg|ico|woff2?)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+# --- 5. Compressao ------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml \
+    application/javascript application/json image/svg+xml
+</IfModule>
+
+# --- 6. URLs limpas (sem .html) ------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # /index ou /index.html -> raiz. O [NE] e obrigatorio: sem ele o
+  # Apache re-escapa o %20 da pasta local e gera %2520.
+  RewriteCond %{THE_REQUEST} !/api/ [NC]
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\s([^.\s?]*/)index(\.html)?[\s?] [NC]
+  RewriteRule ^ %1 [R=301,L,NE]
+
+  # /pagina.html -> /pagina
+  RewriteCond %{THE_REQUEST} !/api/ [NC]
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\s([^.\s?]+)\.html[\s?] [NC]
+  RewriteRule ^ %1 [R=301,L,NE]
+
+  # Serve o .html internamente na URL sem extensao
+  RewriteCond %{REQUEST_URI} !/api/
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^([^.]+)$ $1.html [L]
+
+  # Qualquer outra coisa inexistente cai na pagina de erro.
+  # Caminho relativo: funciona na subpasta local e na raiz do dominio.
+  RewriteCond %{REQUEST_URI} !/api/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html !-f
+  RewriteRule ^ erro.php [L]
+</IfModule>
