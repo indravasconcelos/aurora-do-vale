@@ -634,14 +634,14 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;text-underline-
   :root{--pad:14px}
   .hero-full-title{font-size:clamp(28px,9vw,38px)}
   .hero-full-sub{font-size:13px}
-  .infobar-inner{gap:12px;font-size:11px;padding:14px var(--pad)}
+  .infobar-inner{gap:8px;font-size:11px;padding:12px var(--pad);flex-wrap:wrap;justify-content:center}
   .residencial-header h2{font-size:clamp(24px,6vw,32px)}
   .residencial-sub{font-size:13px}
-  .residencial-models{grid-template-columns:1fr 1fr;gap:10px}
-  .residencial-card{padding:14px 12px;border-radius:16px}
-  .residencial-card h3{font-size:14px}
-  .residencial-card-area{font-size:18px}
-  .residencial-card-list li{font-size:12px}
+  .residencial-models{grid-template-columns:1fr;gap:16px;max-width:380px;margin-inline:auto}
+  .residencial-card{padding:18px 16px;border-radius:16px}
+  .residencial-card h3{font-size:16px}
+  .residencial-card-area{font-size:22px}
+  .residencial-card-list li{font-size:13px}
   .galeria-ref{padding:32px 0 24px}
   .galeria-ref-stage{height:260px}
   .galeria-ref-card{width:65vw;min-width:160px}
@@ -657,15 +657,15 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;text-underline-
 /* Small phones (360px - 479px) */
 @media(max-width:479px){
   :root{--pad:12px}
-  .hero-full-title{font-size:clamp(24px,10vw,32px)}
+  .hero-full-title{font-size:clamp(26px,10vw,32px)}
   .hero-full-sub{font-size:13px;line-height:1.55}
-  .hero-full-actions .btn{font-size:11px;padding:12px 20px}
+  .hero-full-actions .btn{font-size:12px;padding:14px 22px}
   .infobar-inner{font-size:11px;gap:8px}
-  .residencial-models{grid-template-columns:1fr 1fr;gap:8px;max-width:100%}
-  .residencial-card{padding:12px 10px;border-radius:14px}
-  .residencial-card h3{font-size:13px}
-  .residencial-card-area{font-size:16px}
-  .residencial-card-list li{font-size:12px}
+  .residencial-models{grid-template-columns:1fr;gap:14px;max-width:340px;margin-inline:auto}
+  .residencial-card{padding:16px 14px;border-radius:14px}
+  .residencial-card h3{font-size:15px}
+  .residencial-card-area{font-size:20px}
+  .residencial-card-list li{font-size:13px}
   .galeria-ref{padding:24px 0 20px}
   .galeria-ref-stage{height:220px}
   .galeria-ref-card{width:75vw;min-width:140px}
@@ -676,7 +676,7 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;text-underline-
   .localizacao-visual{border-radius:10px;padding:5px}
   .localizacao-visual::before{inset:4px}
   .localizacao-map{border-radius:6px}
-  .street-name{font-size:11px;padding:6px 10px;white-space:normal;text-align:center;line-height:1.4}
+  .street-name{font-size:10px;padding:6px 8px;white-space:normal;text-align:center;line-height:1.4;max-width:95%}
   .av-placeholder-card{padding:14px 12px}
   .av-placeholder-card p{font-size:12.5px}
   .av-placeholder-card em{font-size:11px}
@@ -690,15 +690,27 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;text-underline-
 @media(max-width:359px){
   .hero-full-title{font-size:22px}
   .hero-full-sub{font-size:13px}
-  .infobar-inner{font-size:11px;gap:5px}
-  .residencial-models{grid-template-columns:1fr 1fr;gap:6px}
-  .residencial-card{padding:10px 8px}
-  .residencial-card h3{font-size:12px}
-  .residencial-card-area{font-size:14px}
+  .infobar-inner{font-size:10px;gap:4px;flex-wrap:wrap;justify-content:center}
+  .infobar-sep{display:none}
+  .residencial-models{grid-template-columns:1fr;gap:14px;max-width:280px;margin-inline:auto}
+  .residencial-card{padding:16px 14px}
+  .residencial-card h3{font-size:15px}
+  .residencial-card-area{font-size:20px}
   .galeria-ref-stage{height:180px}
   .galeria-ref-card{width:85vw;min-width:120px}
   .faq-question{font-size:13px;padding:12px 14px}
   .faq-answer p{font-size:13px;padding:0 14px 12px}
+}
+
+/* Foldables & ultra-narrow (280px - 319px) */
+@media(max-width:319px){
+  :root{--pad:10px}
+  .hero-full-title{font-size:20px;line-height:1.05}
+  .hero-full-sub{font-size:12px}
+  .nav-logo-text strong{font-size:12px}
+  .residencial-models{grid-template-columns:1fr}
+  .cta-content h2{font-size:18px}
+  .footer-logo{font-size:14px}
 }
 
 /* Landscape phones */
@@ -720,6 +732,30 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;text-underline-
 @media(min-resolution:2dppx){
   .hero-full-bg img{image-rendering:-webkit-optimize-contrast}
 }
+
+/* Ultra-wide & large desktops (1400px+) */
+@media(min-width:1400px){
+  :root{--pad:40px}
+  .container{max-width:1280px}
+  .hero-full-title{font-size:clamp(56px,4.5vw,78px)}
+  .hero-full-sub{font-size:20px;max-width:520px}
+  .residencial-models{max-width:1100px;gap:32px}
+  .galeria-ref-stage{height:460px}
+}
+@media(min-width:1600px){
+  .container{max-width:1360px}
+  .hero-full-inner{max-width:720px}
+}
+@media(min-width:1920px){
+  .container{max-width:1440px}
+  .hero-full{min-height:calc(100vh - 72px)}
+}
+
+/* Fluid & safe areas */
+html{overflow-x:hidden}
+body{overflow-x:hidden}
+img,video{max-width:100%;height:auto}
+.container{width:100%;margin-inline:auto;padding-inline:var(--pad)}
 
 /* Print */
 @media print{
